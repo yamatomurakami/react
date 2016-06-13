@@ -1,0 +1,65 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Sample</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/babel">
+
+    var InputBox = React.createClass({
+      getInitialState() {
+        return {
+          nameValue: "initial name",
+          emailValue: "yamato.murakami@mkt-apps.com"
+        };
+      },
+      changeName(e) {
+        this.setState({nameValue: e.target.value});
+      },
+      changeEmail(e) {
+        this.setState({emailValue: e.target.value});
+      },
+      loadData() {
+        this.setState({nameValue: this.props.data,emailValue: "mapps@gmail.com"});
+      },
+      saveData() {
+        alert("name:" + this.state.nameValue + "\n" +
+              "email:" + this.state.emailValue );
+      },
+      render: function() {
+        return (
+          <div className="inputBox">
+            <h1>Input</h1>
+            <div>
+              <p>{this.state.nameValue}</p>
+              <input type="text" name="name" value={this.state.nameValue} onChange={this.changeName} />
+            </div>
+            <div>
+              <p>{this.state.emailValue}</p>
+              <input type="email" name="email" value={this.state.emailValue} onChange={this.changeEmail} />
+            </div>
+            <input type="button" value="load" onClick={this.loadData} />
+            <input type="button" value="save" onClick={this.saveData} />
+          </div>
+        );
+      }
+    });
+
+    var nameData = "taro";
+
+    ReactDOM.render(
+      // <NameBox />,
+      <InputBox data={nameData}/>,
+      document.getElementById('content')
+    );
+
+    </script>
+  </body>
+</html>

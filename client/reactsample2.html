@@ -1,0 +1,95 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Sample</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/babel">
+    var NameComponent = React.createClass({
+      getInitialState() {
+        return {
+          textValue: "initial name"
+        };
+      },
+      changeText(e) {
+        this.setState({textValue: e.target.value});
+      },
+      render() {
+        return (
+          <div>
+            <p>{this.state.textValue}</p>
+            <input type="text" name="name" value={this.state.textValue} onChange={this.changeText} />
+          </div>
+        );
+      }
+    });
+
+    var MailComponent = React.createClass({
+      getInitialState() {
+        return {
+          textValue: "yamato.murakami@mkt-apps.com"
+        };
+      },
+      changeText(e) {
+        this.setState({textValue: e.target.value});
+      },
+      render() {
+        return (
+          <div>
+            <p>{this.state.textValue}</p>
+            <input type="email" name="email" value={this.state.textValue} onChange={this.changeText} />
+          </div>
+        );
+      }
+    });
+
+    var LoadComponent = React.createClass({
+      render() {
+        return (
+            <input type="button" value="load" onClick={this.props.loadData} />
+        );
+      }
+    });
+
+    var SaveComponent = React.createClass({
+      render() {
+        return (
+            <input type="button" value="save" onClick="" />
+        );
+      }
+    });
+
+    var InputBox = React.createClass({
+      render: function() {
+        return (
+          <div className="inputBox">
+            <h1>Input</h1>
+            <NameComponent />
+            <MailComponent />
+            <LoadComponent />
+            <SaveComponent />
+          </div>
+        );
+      }
+    });
+
+    var data = [
+                  {name: "react taro", email: "taro.react@mkt-apps.com"},
+                ];
+
+    ReactDOM.render(
+      // <NameBox />,
+      <InputBox />,
+      document.getElementById('content')
+    );
+
+    </script>
+  </body>
+</html>
